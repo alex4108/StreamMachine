@@ -7,7 +7,8 @@ jobs:
   include:
     - stage: build docker image
       script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - echo "Logging in as ${DOCKER_USERNAME}"
+      - echo "$DOCKER_PASSWORD" | docker login --username "${DOCKER_USERNAME}" --password-stdin
       - docker build -t streammachine .
       - docker images
       - docker tag streammachine $DOCKER_USERNAME/streammachine
