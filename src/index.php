@@ -1,5 +1,6 @@
 <?php
 require_once('../api_auth.php');
+require_once('../streamers.php');
 
     if (isset($_GET['stream'])) { 
         $streamTag = $_GET['stream'];
@@ -8,7 +9,6 @@ require_once('../api_auth.php');
         $streamTag = '';
     }
 
-    require_once('../streamers.php')
 ?>
 </div><!DOCTYPE html>
 <html lang="en">
@@ -55,7 +55,7 @@ require_once('../api_auth.php');
                             <span>Online Streams</span>
                         </li>
                         <?php
-$streamData = json_decode(shell_exec("curl http://localhost:8000/api/streams --user admin:admin"));
+$streamData = json_decode(shell_exec("curl http://localhost:8000/api/streams --user " . $ADMIN_USER . ":" . $ADMIN_PASS . ""));
 $live = 0;
 $liveStreams = array();
 foreach($streamData->live as $k => $stream) { 
