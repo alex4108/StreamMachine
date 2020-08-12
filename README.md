@@ -16,13 +16,20 @@
 
 ## Setup
 
-1. Clone the repository
-1. Modify the `streamers.php` file to include required Stream Keys, optional Discord URLs and Titan Embed IDs.  You can skip this for testing.
+### Before you start
+
+* Stream Keys are your Unique ID used on the streaming server to identify your stream from another stream.  I usually set this to my username, eg alex4108
+
+### The server (Website + Streaming Server)
+1. Clone the repository `git clone https://github.com/alex4108/StreamMachine.git`
+1. Modify the `streamers.php` file to include required Stream Keys, optional Discord URLs and Titan Embed IDs.  You can skip this for initial setup.
 1. Build the container: `docker build -t streammachine .`
 1. Run the container
 
 * Run Container: `docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 --name streammachine streammachine` 
 * Run Conatiner w/ non-default credentials: `docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 --name streammachine streammachine`
+
+### Your client
 
 1. Use OBS or similar stream software to publish a stream to the container at URL `rtmp://container_ip/live/` with stream key `TEST` (or a custom stream key).
 1. You should be able to see your stream in the "Online Streams" list in the left bar of the app
