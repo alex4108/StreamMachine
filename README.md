@@ -8,7 +8,11 @@
 [![GitHub license](https://img.shields.io/github/license/alex4108/StreamMachine)](https://github.com/alex4108/StreamMachine/blob/master/LICENSE)
 ![GitHub All Releases](https://img.shields.io/github/downloads/alex4108/StreamMachine/total)
 ![GitHub contributors](https://img.shields.io/github/contributors/alex4108/StreamMachine)
+[![Discord](https://img.shields.io/discord/742969076623605830)](https://discord.gg/FpDjFEQ)
 
+
+
+[![Join Us in Discord](https://user-images.githubusercontent.com/7796475/89976812-2628c080-dc2f-11ea-92a1-fe87b6a9cf92.jpg)](https://discord.gg/FpDjFEQ)
 
 ## Why is this here
 
@@ -86,6 +90,10 @@ Contributions are what make the open source community such an amazing place to b
 
 * Cross-Site cookies are forbidden by default in the browser.  This prevents the chat widget from loading.
 * Video player may "bounce" in the browser.  This can be resolved by zooming out
+
+# Support
+
+[Join the Discord Server](https://discord.gg/FpDjFEQ)
 
 # Credits
 
