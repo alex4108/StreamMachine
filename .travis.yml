@@ -1,0 +1,14 @@
+dist: trusty
+env:
+    global:
+        secure: "BSp3cGYTmsvADoUXq8rSh/d067f7laT+to5OyQ+fktoGyaNUAbQSDOA1jFPWr+GrozR+iVQ/TH14FamuOzhnLhJagHuR7fgoYdtNn0uRT0s/FhyGCTg3x4uVRGCYM5OSnX9RkeuMb4WpwvyOGz4vivegUQqSYpG4y/vgy+imFisNCPz0ibyOFBvxrdg00HuVWBi4Quzegi3pWs4x6YpvlABiMFdtsM4Af00Ht+IE3obSv4c/zERXlra8TzQZxQTQMLBjZz4QPypjUc5N38gfGnuZkhVQdTflg1TEepRjHfDEPKCo02nKGkGpKzCb6tqgswLoGt1ZwcpRgZlkmQyolT/vY8uFVUHmlqK1ZcXrUJgj+DBHevBcMzFTbMIgrLlYZb+bhMEo/7R9MNktivLp+08J6vJPG2gIfYwobQDu0owSbOpxTS/ODyvC2M5enM0u29WoRpnhxO5vDW5YPmYnxlL0Nu4mU4Gb2IjDALMWQiqla+G3TjDVRixNQExZ6+ungnD5nzc8sSkrMruFkWPxZ5idebYR7Wo/d6EVcJ7O+3hwZRSPdcsHiqy+A2hthbEpXsgZ7gxxBEBCALtmxcsq4DbgCrd0rY9O4AFT4cLME5Fmt1gF+BxWZe5h4iZL4Mi0122sUqG4giwhkn2Mk57Ax1f9SC8MwtYl9knBjy/7+OI=" # DOCKER_PASSWORD
+        DOCKER_USERNAME: alex4108
+jobs:
+  include:
+    - stage: build docker image
+      script:
+      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+      - docker build -t streammachine .
+      - docker images
+      - docker tag streammachine $DOCKER_USERNAME/streammachine
+      - docker push $DOCKER_USERNAME/streammachine
