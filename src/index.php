@@ -17,7 +17,7 @@ require_once('../streamers.php');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php if (isset($streamTag) && $streamTag != '') { echo $streamTag . " | "; } ?> StreamMachine </title>
+    <title><?php if (isset($streamTag) && $streamTag != '') { echo $streamTag . " | "; } ?> StreamingThing </title>
 
     <!-- using online links -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -46,7 +46,7 @@ require_once('../streamers.php');
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class="sidebar-item sidebar-brand">
-                    <a href="#">StreamMachine</a>
+                    <a href="#">StreamingThing</a>
                 </div>
                 <!-- sidebar-menu  -->
                 <div class=" sidebar-item sidebar-menu">
@@ -125,7 +125,7 @@ foreach($streamers as $k => $streamer) {
 		else {
 			$channel = '&defaultchannel=' . $streamer['discord']['titanChannel'];
 		}
-		echo('<iframe src="https://titanembeds.com/embed/' . $streamer['discord']['titanEmbedId'] . '?theme=DiscordDark' . $channel . '" width="300px" height="800px" frameborder="0"></iframe>');
+		echo('<iframe src="https://titanembeds.com/embed/' . $streamer['discord']['titanEmbedId'] . '?theme=DiscordDark' . $channel . '" width="300px" height="55%" frameborder="0"></iframe>');
 	}
 ?>
 </li>
