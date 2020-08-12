@@ -32,9 +32,15 @@
 1. Pull the container: `docker pull alex4108/streammachine:latest`
 1. Run the container
 
-* Run Container: `docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine` 
-* Run Conatiner with non-default credentials: `docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
-* Run Container with a local config file: `docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 alex4108/streammachine -v /var/www/streamers.php`
+`docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine` 
+
+##### Run Conatiner with non-default credentials: 
+
+`docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
+
+##### Run Container with a local config file
+
+`docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 -v /path/to/your/streamers.php:/var/www/streamers.php alex4108/streammachine`
 
 ##### Start the container in one line
 
