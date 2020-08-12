@@ -14,6 +14,13 @@
 * Stream higher quality than free tiers of popular streaming platforms (1080p, 4K, 8K?)
 * Not subject to content guidelines of other streaming platforms
 
+
+## Screenshots
+
+![Screenshot_25](https://user-images.githubusercontent.com/7796475/89960557-f95fb380-dc04-11ea-9116-ed86e1c9ecd3.jpg)
+
+![Screenshot_26](https://user-images.githubusercontent.com/7796475/89960585-0c728380-dc05-11ea-8821-6005163b3d12.jpg)
+
 ## Setup
 
 ### Before you start
@@ -21,15 +28,14 @@
 * Stream Keys are your Unique ID used on the streaming server to identify your stream from another stream.  I usually set this to my username, eg alex4108
 
 ### The server (Website + Streaming Server)
-1. Clone the repository `git clone https://github.com/alex4108/StreamMachine.git`
-1. Modify the `streamers.php` file to include required Stream Keys, optional Discord URLs and Titan Embed IDs.  You can skip this for initial setup.
-1. Build the container: `docker build -t streammachine .`
+1. Pull the container: `docker pull alex4108/streammachine:latest`
 1. Run the container
 
 * Run Container: `docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine` 
-* Run Conatiner w/ non-default credentials: `docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
+* Run Conatiner with non-default credentials: `docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
+* Run Container with a local config file: `docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 alex4108/streammachine -v /var/www/streamers.php`
 
-#### In one line
+##### Start the container in one line
 
 `git clone https://github.com/alex4108/StreamMachine.git && cd StreamMachine && docker build -t streammachine . && docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
 
@@ -38,17 +44,17 @@
 1. Use OBS or similar stream software to publish a stream to the container at URL `rtmp://container_ip/live/` with stream key `TEST` (or a custom stream key).
 1. You should be able to see your stream in the "Online Streams" list in the left bar of the app
 
-## Screenshots
-
-![Screenshot_25](https://user-images.githubusercontent.com/7796475/89960557-f95fb380-dc04-11ea-9116-ed86e1c9ecd3.jpg)
-
-![Screenshot_26](https://user-images.githubusercontent.com/7796475/89960585-0c728380-dc05-11ea-8821-6005163b3d12.jpg)
-
 ## What does it do
 
 * Runs a [Node-Media-Server](https://github.com/illuspas/Node-Media-Server) who accepts RTMP streams.
 * Runs a PHP app that connects to the Node-Media-Server API to determine online/offline status
 * Features [Titan Embed]() to put a chat module on your stream's page for discord
+
+## Configuration Guidelines
+
+Configuration of the streamers.php file isn't required.  Streams will be accepted using any stream key, and will immediately show as Online in the webapp.
+
+To enabled additional features, such as Discord join links, the Titan widget, or to list your key in the offline streams list, you must modify the streamers.php configuration file.
 
 ## Production Deployment Notes
 
