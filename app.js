@@ -26,7 +26,7 @@ const config = {
     secret: 'nodemedia2017privatekey'
   },
   trans: {
-    ffmpeg: '/home/alex/nms/ffmpeg',
+    ffmpeg: '/nms/ffmpeg',
     tasks: [
       {
         app: 'live',
