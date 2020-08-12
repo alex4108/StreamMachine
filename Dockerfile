@@ -4,6 +4,7 @@ FROM php:7.3-apache-buster
 COPY ./src/ /var/www/html
 COPY streamers.php /var/www/
 COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # NodeJS and NPM
 RUN apt-get -y update
