@@ -146,7 +146,7 @@ foreach($streamers as $k => $streamer) {
                         }
                         else {
                                                         
-                            $streamData = json_decode(shell_exec("curl http://localhost:8000/api/streams --user admin:admin"));
+                            $streamData = json_decode(shell_exec("curl http://localhost:8000/api/streams --user " . $ADMIN_USER . ":" . $ADMIN_PASS . ""));
                             //print_r($streamData);
                             $width = null;
                             $height = null;
@@ -174,6 +174,23 @@ foreach($streamers as $k => $streamer) {
                             }
                         }
 						?>
+                    </div>
+                </div>
+                <hr>
+                <div class="row ">
+                    <div class="form-group col-md-12">
+                        <small>Made with <i class="fa fa-heart text-danger" aria-hidden="true"></i> by <span
+                                class="text-secondary font-weight-bold">Alex Schittko</span></small>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <a href="https://github.com/alex4108" target="_blank"
+                            class="btn btn-sm bg-secondary shadow-sm rounded-0 text-light mr-3 mb-3">
+                            <i class="fab fa-github" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aschittko/" target="_blank"
+                            class="btn btn-sm bg-secondary shadow-sm rounded-0 text-light mr-3 mb-3">
+                            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                        </a>
                     </div>
                 </div>
             </div>
