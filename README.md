@@ -1,6 +1,7 @@
 # StreamMachine
 
 [![Build Status](https://travis-ci.com/alex4108/StreamMachine.svg?branch=master)](https://travis-ci.com/alex4108/StreamMachine)
+![Docker Pulls](https://img.shields.io/docker/pulls/alex4108/streammachine)
 [![GitHub issues](https://img.shields.io/github/issues/alex4108/StreamMachine)](https://github.com/alex4108/StreamMachine/issues)
 [![GitHub forks](https://img.shields.io/github/forks/alex4108/StreamMachine)](https://github.com/alex4108/StreamMachine/network)
 [![GitHub stars](https://img.shields.io/github/stars/alex4108/StreamMachine)](https://github.com/alex4108/StreamMachine/stargazers)
