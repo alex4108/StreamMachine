@@ -15,8 +15,8 @@
  
 #    $streamers['TEST']['online'] = false;
 #    $streamers['TEST']['discord']['url'] = '';
-#    $streamers['TEST']['discord']['titanEmbedId'] = '***REMOVED***';
-#    $streamers['TEST']['discord']['titanChannel'] = '***REMOVED***';
+#    $streamers['TEST']['discord']['titanEmbedId'] = '';
+#    $streamers['TEST']['discord']['titanChannel'] = '';
 
 
 ?>
