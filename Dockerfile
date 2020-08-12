@@ -2,6 +2,7 @@ FROM php:7.3-apache-buster
 
 # Install website
 COPY ./src/ /var/www/html
+COPY streamers.php /var/www/
 COPY entrypoint.sh /entrypoint.sh
 
 # NodeJS and NPM
