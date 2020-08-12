@@ -16,9 +16,13 @@
 
 ## Setup
 
+### Before you start
+
+* Stream Keys are your Unique ID used on the streaming server to identify your stream from another stream.  I usually set this to my username, eg alex4108
+
 ### The server (Website + Streaming Server)
 1. Clone the repository `git clone https://github.com/alex4108/StreamMachine.git`
-1. Modify the `streamers.php` file to include required Stream Keys, optional Discord URLs and Titan Embed IDs.  You can skip this for testing.
+1. Modify the `streamers.php` file to include required Stream Keys, optional Discord URLs and Titan Embed IDs.  You can skip this for initial setup.
 1. Build the container: `docker build -t streammachine .`
 1. Run the container
 
