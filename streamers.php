@@ -15,8 +15,8 @@
  
 #    $streamers['TEST']['online'] = false;
 #    $streamers['TEST']['discord']['url'] = '';
-#    $streamers['TEST']['discord']['titanEmbedId'] = '547673460663386135';
-#    $streamers['TEST']['discord']['titanChannel'] = '742310855110033519';
+#    $streamers['TEST']['discord']['titanEmbedId'] = '';
+#    $streamers['TEST']['discord']['titanChannel'] = '';
 
 
 ?>
