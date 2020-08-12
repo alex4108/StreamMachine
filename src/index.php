@@ -58,7 +58,7 @@ require_once('../streamers.php');
 $streamData = json_decode(shell_exec("curl http://localhost:8000/api/streams --user " . $ADMIN_USER . ":" . $ADMIN_PASS . ""));
 $live = 0;
 $liveStreams = array();
-if ($streamData != null) { 
+if ($streamData != null && $streamData != "" && property_exists($streamData, 'live')) { 
     foreach($streamData->live as $k => $stream) { 
         $streamers[$k]['online'] = true;
     }

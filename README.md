@@ -26,8 +26,12 @@
 1. Build the container: `docker build -t streammachine .`
 1. Run the container
 
-* Run Container: `docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 --name streammachine streammachine` 
-* Run Conatiner w/ non-default credentials: `docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 --name streammachine streammachine`
+* Run Container: `docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine` 
+* Run Conatiner w/ non-default credentials: `docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
+
+#### In one line
+
+`git clone https://github.com/alex4108/StreamMachine.git && cd StreamMachine && docker build -t streammachine . && docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
 
 ### Your client
 
