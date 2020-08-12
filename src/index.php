@@ -17,7 +17,7 @@ require_once('../streamers.php');
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?php if (isset($streamTag) && $streamTag != '') { echo $streamTag . " | "; } ?> StreamingThing </title>
+    <title><?php if (isset($streamTag) && $streamTag != '') { echo $streamTag . " | "; } ?> StreamMachine </title>
 
     <!-- using online links -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
@@ -46,7 +46,7 @@ require_once('../streamers.php');
             <div class="sidebar-content">
                 <!-- sidebar-brand  -->
                 <div class="sidebar-item sidebar-brand">
-                    <a href="#">StreamingThing</a>
+                    <a href="#">StreamMachine</a>
                 </div>
                 <!-- sidebar-menu  -->
                 <div class=" sidebar-item sidebar-menu">
@@ -94,23 +94,26 @@ foreach($streamers as $k => $streamer) {
 }
 
 ?>
-
-                    <li class="header-menu"><span>Join us on Discord</span></li>
                     
 <?php
-
+$output = '';
+$numDiscordServers = 0;
 foreach($streamers as $k => $streamer) { 
     if (isset($streamer['discord']['url']) && $streamer['discord']['url'] != '') { 
-     ?><div class="offline"><li>
-                            <a href="<?php echo $streamer['discord']['url']; ?>" target="_blank">
+     $output .= '<div class="offline"><li>
+                            <a href="' . $streamer['discord']['url'] . '" target="_blank">
                                 <i class="fab fa-discord"></i>
-                                <span class="menu-text"><?php echo $k; ?></span>
+                                <span class="menu-text">' . $k . '</span>
                             </a>
                         </li></div>
-    <?php
+    ';
+    $numDiscordServers++;
+    }
 }
+if ($numDiscordServers > 0) { 
+    echo '<li class="header-menu"><span>Join us on Discord</span></li>';
+    echo $output;
 }
-
 ?>
 
 <li>

@@ -32,23 +32,23 @@
 1. Pull the container: `docker pull alex4108/streammachine:latest`
 1. Run the container
 
-`docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine` 
+`docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 alex4108/streammachine:latest` 
 
-##### Run Conatiner with non-default credentials: 
+##### Run Conatiner with non-default credentials
 
-`docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
+`docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 alex4108/streammachine:latest`
 
 ##### Run Container with a local config file
 
-`docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 -v /path/to/your/streamers.php:/var/www/streamers.php alex4108/streammachine`
+`docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 -v /path/to/your/streamers.php:/var/www/streamers.php alex4108/streammachine:latest`
 
 ##### Start the container in one line
 
-`git clone https://github.com/alex4108/StreamMachine.git && cd StreamMachine && docker build -t streammachine . && docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 streammachine`
+`docker pull alex4108/streammachine:latest && docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 alex4108/streammachine:latest`
 
 ### Your client
 
-1. Use OBS or similar stream software to publish a stream to the container at URL `rtmp://container_ip/live/` with stream key `TEST` (or a custom stream key).
+1. Use [OBS](https://obsproject.com/) or similar stream software to publish a stream to the container at URL `rtmp://container_ip/live/` with any non empty stream key.
 1. You should be able to see your stream in the "Online Streams" list in the left bar of the app
 
 ## What does it do
