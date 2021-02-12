@@ -13,6 +13,7 @@ jQuery(function ($) {
   });
 
   //toggle sidebar
+
   $('#toggle-sidebar').click(function () {
     $('.page-wrapper').toggleClass('toggled');
   });

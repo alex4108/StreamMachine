@@ -198,6 +198,16 @@ if ($numDiscordServers > 0) {
                         </a>
                     </div>
                 </div>
+                <?php 
+                    if ($streamTag != '') { 
+                        ?>
+                        <div class="row "> 
+                            <a id="toggle-sidebar" class="btn btn-secondary rounded-0" href="#">
+                                <span>Show Streams</span>
+                            </a>
+                        </div>
+                    <?php
+                    }?>
             </div>
         </main>
         <!-- page-content" -->
@@ -222,6 +232,16 @@ if ($numDiscordServers > 0) {
 
 
     <script src="js/main.js"></script>
+
+    <?
+        if ($streamTag != '') { ?> 
+            <script type="text/javascript">
+                console.log("Toggling sidebar...");
+                $('.page-wrapper').toggleClass('toggled');
+            </script>
+        <?php 
+        }
+    ?>
 </body>
 
 </html>
