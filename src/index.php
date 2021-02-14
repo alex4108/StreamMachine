@@ -148,34 +148,37 @@ if ($numDiscordServers > 0) {
                         <?php
                         if ($streamTag == "") { 
                             echo "<p>Choose a stream from the left</p>";
-                        }
-                        else {
-                                                        
+                        } else {                     
                             $streamData = json_decode(shell_exec("curl http://localhost:8000/api/streams --user " . $ADMIN_USER . ":" . $ADMIN_PASS . ""));
-                            //print_r($streamData);
                             $width = null;
                             $height = null;
+                            $foundStream = false;
                             if ($streamData != null) { 
                                 foreach($streamData->live as $k => $stream) { 
                                     if ($k == $streamTag) { 
                                         $width = $stream->publisher->video->width;
                                         $height = $stream->publisher->video->height;
+                                        $foundStream = true;
                                     }
                                 }
-                            ?>
-                            <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
-                            <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
-                            <script src="videojs-dash.min.js"></script>
+                            }
+                            if ($foundStream) { 
+                                ?>
+                                <script src="https://vjs.zencdn.net/7.8.4/video.js"></script>
+                                <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+                                <script src="videojs-dash.min.js"></script>
 
-                                <video-js id=<?php echo $streamTag; ?> width=<?php echo $width; ?> height=<?php echo $height; ?> class="vjs-default-skin" controls>
-                                    <source src="live/<?php echo $streamTag; ?>/index.m3u8">
-                                </video-js>
-                            <script>
-                                var player = videojs('<?php echo $streamTag; ?> ');
-                                player.fluid(true);
-                                player.play();
-                            </script>
-                        <?php
+                                    <video-js id=<?php echo $streamTag; ?> width=<?php echo $width; ?> height=<?php echo $height; ?> class="vjs-default-skin" controls>
+                                        <source src="live/<?php echo $streamTag; ?>/index.m3u8">
+                                    </video-js>
+                                <script>
+                                    var player = videojs('<?php echo $streamTag; ?> ');
+                                    player.fluid(true);
+                                    player.play();
+                                </script>
+                            <?php
+                            } else { 
+                                ?><p>Sorry, this stream is currently offline.</p><?php
                             }
                         }
 						?>
