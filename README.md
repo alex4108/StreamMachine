@@ -50,9 +50,9 @@ Simply modify `web/config.php` and then rebuild, `src web && docker build -t ale
 
 ## Configuration Guidelines
 
-Configuration of the streamers.php file isn't required.  Streams will be accepted using any stream key, and will immediately show as Online in the webapp.
+Configuration of the config.php file isn't required.  Streams will be accepted using any stream key, and will immediately show as Online in the webapp.
 
-To enabled additional features, such as Discord join links, the Titan widget, or to list your key in the offline streams list, you must modify the streamers.php configuration file and rebuild the container.
+To enabled additional features, such as Discord join links, the Titan widget, or to list your key in the offline streams list, you must modify the config.php configuration file and rebuild the container.
 
 ## Production Deployment Notes
 
