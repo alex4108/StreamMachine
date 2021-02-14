@@ -30,7 +30,7 @@
 
 * Stream Keys are your Unique ID used on the streaming server to identify your stream from another stream.  I usually set this to my username, eg Alex
 
-##### Start normally
+#### Start normally
 
 `docker-compose up -d`
 
@@ -40,7 +40,7 @@ Simply modify `web/config.php` and then rebuild, `src web && docker build -t ale
 
 ### Your streaming client
 
-1. Use [OBS](https://obsproject.com/) or similar stream software to publish a stream to the container at URL `rtmp://container_ip/live/` with any non empty stream key.
+1. Use [OBS](https://obsproject.com/) or similar stream software to publish a stream to the container at URL `rtmp://host_ip/live/` with any non empty stream key.
 1. You should be able to see your stream in the "Online Streams" list in the left bar of the app
 
 ## What does it do
