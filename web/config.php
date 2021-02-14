@@ -1,5 +1,7 @@
 <?php
 
+    $api_host = "node-media-server"; # change to "localhost" when running outside of docker
+    
     $streamers = array();
 
 # The $streamers array follows the following definition

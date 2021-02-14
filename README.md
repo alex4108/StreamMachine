@@ -18,7 +18,6 @@
 * Stream higher quality than free tiers of popular streaming platforms (1080p, 4K, 8K?)
 * Not subject to content guidelines of other streaming platforms
 
-
 ## Screenshots
 
 ![Screenshot_25](https://user-images.githubusercontent.com/7796475/89960557-f95fb380-dc04-11ea-9116-ed86e1c9ecd3.jpg)
@@ -29,27 +28,17 @@
 
 ### Before you start
 
-* Stream Keys are your Unique ID used on the streaming server to identify your stream from another stream.  I usually set this to my username, eg alex4108
+* Stream Keys are your Unique ID used on the streaming server to identify your stream from another stream.  I usually set this to my username, eg Alex
 
-### The server (Website + Streaming Server)
-1. Pull the container: `docker pull alex4108/streammachine:latest`
-1. Run the container
+##### Start normally
 
-`docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 alex4108/streammachine:latest` 
+`docker-compose up -d`
 
-##### Run Conatiner with non-default credentials
+#### Run Container with a local config file
 
-`docker run -e ADMIN_USER=otherAdmin -e ADMIN_PASS=aSecur3Password! -d -p 1935:1935 -p 8000:8000 -p 80:80 alex4108/streammachine:latest`
+Simply modify `web/config.php` and then rebuild, `src web && docker build -t alex4108/streammachine:web .`, then start normally
 
-##### Run Container with a local config file
-
-`docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 -v /path/to/your/streamers.php:/var/www/streamers.php alex4108/streammachine:latest`
-
-##### Start the container in one line
-
-`docker pull alex4108/streammachine:latest && docker run -d -p 1935:1935 -p 8000:8000 -p 80:80 alex4108/streammachine:latest`
-
-### Your client
+### Your streaming client
 
 1. Use [OBS](https://obsproject.com/) or similar stream software to publish a stream to the container at URL `rtmp://container_ip/live/` with any non empty stream key.
 1. You should be able to see your stream in the "Online Streams" list in the left bar of the app
@@ -57,23 +46,20 @@
 ## What does it do
 
 * Runs a [Node-Media-Server](https://github.com/illuspas/Node-Media-Server) who accepts RTMP streams.
-* Runs a PHP app that connects to the Node-Media-Server API to determine online/offline status
-* Features [Titan Embed]() to put a chat module on your stream's page for discord
+* Runs a website (php) for users to view the streams
 
 ## Configuration Guidelines
 
 Configuration of the streamers.php file isn't required.  Streams will be accepted using any stream key, and will immediately show as Online in the webapp.
 
-To enabled additional features, such as Discord join links, the Titan widget, or to list your key in the offline streams list, you must modify the streamers.php configuration file.
+To enabled additional features, such as Discord join links, the Titan widget, or to list your key in the offline streams list, you must modify the streamers.php configuration file and rebuild the container.
 
 ## Production Deployment Notes
 
-* Restrict traffic on 1935 to authorized hosts only.  This way, unknown users cannot publish streams to the container.
-* Terminate HTTPS at HAProxy and pass plaintext into the container.
-* Use HAProxy for ports 80, 443, AND 8000.  
-* In the HAProxy rules for 8000, restrict access to /admin/ and /api/.  This way, http://container:8000/admin/ and http:///container:8000/api/ are only accessible from the internal network and not to the outside world
-
-_Maybe it's worth bringing HAProxy into the container as well_
+* Simply `docker-compose up -d` to bring the environment online
+* This will open `1935/tcp` for inbound streams.
+* This will open `80/tcp` via haproxy, and properly proxy requests from the outside to node media server for stream viewers.  All other requests will be proxied to the php web server.
+* You may want to add your own proxy to terminate HTTPS connections.
 
 # Contributing
 
@@ -89,6 +75,7 @@ Contributions are what make the open source community such an amazing place to b
 
 * Cross-Site cookies are forbidden by default in the browser.  This prevents the chat widget from loading.
 * Video player may "bounce" in the browser.  This can be resolved by zooming out
+* There is an ~10 second delay between frames coming in to node-media-server and frames being retrieved by viewers.
 
 # Support
 

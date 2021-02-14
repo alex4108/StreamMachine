@@ -1,6 +1,6 @@
 <?php
 require_once('../api_auth.php');
-require_once('../streamers.php');
+require_once('../config.php');
 
     if (isset($_GET['stream'])) { 
         $streamTag = $_GET['stream'];
@@ -55,7 +55,7 @@ require_once('../streamers.php');
                             <span>Online Streams</span>
                         </li>
                         <?php
-$streamData = json_decode(shell_exec("curl http://localhost:8000/api/streams --user " . $ADMIN_USER . ":" . $ADMIN_PASS . ""));
+$streamData = json_decode(shell_exec("curl http://$api_host:8000/api/streams --user " . $ADMIN_USER . ":" . $ADMIN_PASS . ""));
 $live = 0;
 $liveStreams = array();
 if ($streamData != null && $streamData != "" && property_exists($streamData, 'live')) { 
@@ -149,7 +149,6 @@ if ($numDiscordServers > 0) {
                         if ($streamTag == "") { 
                             echo "<p>Choose a stream from the left</p>";
                         } else {                     
-                            $streamData = json_decode(shell_exec("curl http://localhost:8000/api/streams --user " . $ADMIN_USER . ":" . $ADMIN_PASS . ""));
                             $width = null;
                             $height = null;
                             $foundStream = false;

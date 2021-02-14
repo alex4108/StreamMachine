@@ -1,0 +1,29 @@
+version: '3'
+services:
+  node-media-server:
+    image: alex4108/streammachine:nms
+    restart: always
+    ports:
+      - 8000:8000
+      - 1935:1935
+  web:
+    depends_on:
+      - node-media-server
+    links:
+      - node-media-server
+    image: alex4108/streammachine:web
+    restart: always
+  haproxy:
+    depends_on:
+      - web
+      - node-media-server
+    links: 
+      - web
+      - node-media-server
+    image: haproxy:alpine
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - ./haproxy/:/usr/local/etc/haproxy/
+      

@@ -6,7 +6,5 @@ branches:
 script:
       - echo "Logging in as ${DOCKER_USER}"
       - docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
-      - docker build -t streammachine .
-      - docker images
-      - docker tag streammachine $DOCKER_USER/streammachine
-      - docker push $DOCKER_USER/streammachine
+      - bash build.sh
+      
