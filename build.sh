@@ -1,3 +1,6 @@
+set -e
+set -o pipefail
+
 cd node-media-server
 docker build -t alex4108/streammachine:nms .
 cd ../web
