@@ -152,7 +152,7 @@ if ($numDiscordServers > 0) {
                             $width = null;
                             $height = null;
                             $foundStream = false;
-                            if ($streamData != null) { 
+                            if ($streamData != null && $streamData != "" && property_exists($streamData, 'live')) { 
                                 foreach($streamData->live as $k => $stream) { 
                                     if ($k == $streamTag) { 
                                         $width = $stream->publisher->video->width;
