@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streammachine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: streammachine
+  template:
+    metadata:
+      labels:
+        name: streammachine
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: mediaserver
+        image: alex4108/streammachine:nms
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+        - containerPort: 1935
+          protocol: TCP
+      - name: web
+        image: alex4108/streammachine:web
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        imagePullPolicy: Always
+        env:
+        - name: API_HOST
+          value: streammachine-media-api.default.svc.cluster.local

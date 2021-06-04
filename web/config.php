@@ -1,6 +1,8 @@
 <?php
-
-    $api_host = "node-media-server"; # change to "localhost" when running outside of docker
+    $api_host = getenv('API_HOST');
+    if (! $api_host ) { 
+        $api_host = "node-media-server"; # change to "localhost" when running outside of docker
+    }
     
     $streamers = array();
 
