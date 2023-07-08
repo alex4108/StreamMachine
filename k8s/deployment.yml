@@ -1,7 +1,13 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: streammachine
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: streammachine
+  namespace: streammachine
 spec:
   replicas: 1
   selector:
@@ -29,4 +35,76 @@ spec:
         imagePullPolicy: Always
         env:
         - name: API_HOST
-          value: streammachine-media-api.default.svc.cluster.local
+          value: streammachine-media-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streammachine-web
+  namespace: streammachine
+spec:
+  selector:
+    name: streammachine
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streammachine-media
+  namespace: streammachine
+spec:
+  selector:
+    name: streammachine
+  ports:
+  - protocol: TCP
+    port: 1935
+    targetPort: 1935
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streammachine-media-api
+  namespace: streammachine
+spec:
+  selector:
+    name: streammachine
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    external-dns.alpha.kubernetes.io/target: "co1.schittko.me"
+  name: streammachine
+  namespace: streammachine
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: "st.schittko.me"
+    http:
+      paths:
+      - backend:
+          service: 
+            name: streammachine-web
+            port:
+              number: 80
+        path: /
+        pathType: ImplementationSpecific
+      - backend:
+          service:
+            name: streammachine-media-api
+            port:
+              number: 8000
+        path: /live
+        pathType: ImplementationSpecific
+              
